@@ -1,5 +1,5 @@
 Names:				Emails:
-Kendall Townsend
+Kendall Townsend kendallcar@csu.fullerton.edu
 Michael Hatcher
 Tommy Phan
 Vinh Ha				vha3@csu.fullerton.edu
