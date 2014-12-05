@@ -11,91 +11,75 @@ public class CommandFields {
 		StringBuilder sb = new StringBuilder();
 		
 		if (partNum == 1) {
-			if(wordNum == 0){
+			switch (wordNum) {
+			case 0:
 				int Rec_Ctrl = (wordData >> 13) & 0b11;
 				int Num_Part_I_Words = (wordData >> 4) & 0b111111;
 				int Num_Part_II_Words = wordData & 0b1111;
 				sb.append(String.format("Part I, Word 0: Rec_Ctrl = %d", Rec_Ctrl));
-				
-				if (Rec_Ctrl == 0){
+				switch (Rec_Ctrl) {
+				case 0:
 					sb.append(" (no recording)\n");
-					}
-				if else(Rec_Ctrl == 2){
+					break;
+				case 2:
 					sb.append(" (no processing)\n");
-					}
-				if else(Rec_Ctrl == 3)
+					break;
+				case 3:
 					sb.append(" (processing & recording)\n");
-					}
-				else{
+					break;
+				default:
 					sb.append(" (unknown)\n");
-					}
 				}
 				sb.append(String.format("Part I, Word 0: Num_Part_I_Words = %d\n", Num_Part_I_Words));
 				sb.append(String.format("Part I, Word 0: Num_Part_II_Words = %d\n", Num_Part_II_Words));
-				}
-			if else(wordNum == 1){
-				int Cmd_Type = /*To be made later*/;
-				if(Cmd_Type == 4){
-					sb.append(" (Type A)\n");
-					}
-				if else(Cmd_Type == 5){
-					sb.append(" (Type B)\n");
-					}
-				if else(Cmd_Type == 6){
-					sb.append(" (Type C)\n");
-					}
-				else{
-					sb.append(" (unknown)\n");
-					}
-				}
+				break;
 				
-			if else(wordNum == 4){
-				int Rec_Raw = /*To be made later*/;
-				if(Rec_Raw == 0){
-					sb.append(" (Disable)\n");
-					}
-				if else(Rec_Raw == 1){
-					sb.append(" (Enable)\n");
-					}
-				else{
-					sb.append(" (unknown)\n");				
-					}
-				}
-				
-			if else(wordNum == 5){
-				int Cmd_ID = /*To be made later*/
-				}
-				
-			if else(wordNum == 10){
+			case 1:
 				// TODO
-				}
+				break;
 				
-			if else(wordNum == 15){
+			case 4:
 				// TODO
-				}
+				break;
 				
-			if else(wordNum == 22){
+			case 5:
 				// TODO
-				}
+				break;
 				
-			if else(wordNum == 32){
+			case 10:
 				// TODO
-				}
-			if else(wordNum == 37){
-				// TODO
-				}
+				break;
 				
-			if else(wordNum == 38){
+			case 15:
 				// TODO
-				}
+				break;
 				
-			if eles(wordNum == 40){
+			case 22:
 				// TODO
-				}
+				break;
 				
-			if else(wordNum == 41){
+			case 32:
 				// TODO
-				}
+				break;
+			}
+		} else if (partNum == 2) {
+			switch (wordNum) {
+			case 0:
+				// TODO
+				break;
+				
+			case 1:
+				// TODO
+				break;
+				
+			case 3:
+				// TODO
+				break;
+				
+			case 4:
+				// TODO
+				break;
+			}
 		}
 		
 		return sb.toString();
