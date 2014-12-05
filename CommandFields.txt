@@ -19,83 +19,135 @@ public class CommandFields {
 				
 				if (Rec_Ctrl == 0){
 					sb.append(" (no recording)\n");
-					}
+				}
 				if else(Rec_Ctrl == 2){
 					sb.append(" (no processing)\n");
-					}
+				}
 				if else(Rec_Ctrl == 3)
 					sb.append(" (processing & recording)\n");
-					}
+				}
 				else{
 					sb.append(" (unknown)\n");
-					}
 				}
 				sb.append(String.format("Part I, Word 0: Num_Part_I_Words = %d\n", Num_Part_I_Words));
 				sb.append(String.format("Part I, Word 0: Num_Part_II_Words = %d\n", Num_Part_II_Words));
-				}
+			}
+
 			if else(wordNum == 1){
 				int Cmd_Type = /*To be made later*/;
 				if(Cmd_Type == 4){
 					sb.append(" (Type A)\n");
-					}
+				}
 				if else(Cmd_Type == 5){
 					sb.append(" (Type B)\n");
-					}
+				}
 				if else(Cmd_Type == 6){
 					sb.append(" (Type C)\n");
-					}
+				}
 				else{
 					sb.append(" (unknown)\n");
-					}
 				}
+			}
 				
 			if else(wordNum == 4){
 				int Rec_Raw = /*To be made later*/;
 				if(Rec_Raw == 0){
 					sb.append(" (Disable)\n");
-					}
+				}
 				if else(Rec_Raw == 1){
 					sb.append(" (Enable)\n");
-					}
-				else{
-					sb.append(" (unknown)\n");				
-					}
 				}
+				else{
+					sb.append(" (unknown)\n");			
+				}
+			}
 				
 			if else(wordNum == 5){
-				int Cmd_ID = /*To be made later*/
-				}
+				int Cmd_ID = /*To be made later*/;
+				sb.append(" (Command ID)\n");
+			}
 				
 			if else(wordNum == 10){
-				// TODO
-				}
+				int Num_Responses = /*To be made later*/;
+				sb.append(" (Number of Responses)\n");
+			}
 				
 			if else(wordNum == 15){
-				// TODO
+				int Reset_Enable = /*To be made later*/;
+				if(Reset_Enable == 0){
+					sb.append(" (Disable)\n");
 				}
+				if else(Reset_Enable == 1){
+					sb.append(" (Enable)\n");
+				}
+				else{
+					sb.append(" (unknown)\n");			
+				}	
+			}
 				
 			if else(wordNum == 22){
-				// TODO
+				int Direction = /*To be made later*/;
+				if(Direction == 0){
+					sb.append(" (Right)\n");
 				}
+				if else(Direction == 1){
+					sb.append(" (Left)\n");
+				}
+				else{
+					sb.append(" (unknown)\n");			
+				}	
+			}
 				
 			if else(wordNum == 32){
-				// TODO
-				}
+				int Num_Samples = /*To be made later*/;
+				sb.append(" (Number of Samples)\n");
+			}
+
 			if else(wordNum == 37){
-				// TODO
+				int Parity = /*To be made later*/;
+				if(Parity == 0){
+					sb.append(" (Even)\n");
 				}
+				if else(Parity == 1){
+					sb.append(" (Odd)\n");
+				}
+				else{
+					sb.append(" (unknown)\n");			
+				}	
+			}
 				
 			if else(wordNum == 38){
-				// TODO
+				int Test = /*To be made later*/;
+				if(Test == 0){
+					sb.append(" (Disable)\n");
 				}
+				if else(Test == 1){
+					sb.append(" (Enable)\n");
+				}
+				else{
+					sb.append(" (unknown)\n");			
+				}	
+			}
 				
 			if eles(wordNum == 40){
-				// TODO
+				int Ctrl_Enable = /*To be made later*/;
+				if(Ctrl_Enable == 0){
+					sb.append(" (Disable)\n");
+				}
+				if else(Ctrl_Enable == 1){
+					sb.append(" (Enable)\n");
+				}
+				else{
+					sb.append(" (unknown)\n");			
 				}
 				
 			if else(wordNum == 41){
-				// TODO
-				}
+				int Code = /*To be made later*/;
+				sb.append(" (Code Value)\n");
+			}
+			else{
+				sb.append(" (unknown)\n");			
+			}
 		}
 		
 		return sb.toString();

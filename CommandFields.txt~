@@ -11,74 +11,138 @@ public class CommandFields {
 		StringBuilder sb = new StringBuilder();
 		
 		if (partNum == 1) {
-			switch (wordNum) {
-			case 0:
+			if(wordNum == 0){
 				int Rec_Ctrl = (wordData >> 13) & 0b11;
 				int Num_Part_I_Words = (wordData >> 4) & 0b111111;
 				int Num_Part_II_Words = wordData & 0b1111;
 				sb.append(String.format("Part I, Word 0: Rec_Ctrl = %d", Rec_Ctrl));
-				switch (Rec_Ctrl) {
-				case 0:
+				
+				if (Rec_Ctrl == 0){
 					sb.append(" (no recording)\n");
-					break;
-				case 2:
+				}
+				if else(Rec_Ctrl == 2){
 					sb.append(" (no processing)\n");
-					break;
-				case 3:
+				}
+				if else(Rec_Ctrl == 3)
 					sb.append(" (processing & recording)\n");
-					break;
-				default:
+				}
+				else{
 					sb.append(" (unknown)\n");
 				}
 				sb.append(String.format("Part I, Word 0: Num_Part_I_Words = %d\n", Num_Part_I_Words));
 				sb.append(String.format("Part I, Word 0: Num_Part_II_Words = %d\n", Num_Part_II_Words));
-				break;
-				
-			case 1:
-				// TODO
-				break;
-				
-			case 4:
-				// TODO
-				break;
-				
-			case 5:
-				// TODO
-				break;
-				
-			case 10:
-				// TODO
-				break;
-				
-			case 15:
-				// TODO
-				break;
-				
-			case 22:
-				// TODO
-				break;
-				
-			case 32:
-				// TODO
-				break;
 			}
-		} else if (partNum == 2) {
-			switch (wordNum) {
-			case 0:
-				// TODO
-				break;
+
+			if else(wordNum == 1){
+				int Cmd_Type = /*To be made later*/;
+				if(Cmd_Type == 4){
+					sb.append(" (Type A)\n");
+				}
+				if else(Cmd_Type == 5){
+					sb.append(" (Type B)\n");
+				}
+				if else(Cmd_Type == 6){
+					sb.append(" (Type C)\n");
+				}
+				else{
+					sb.append(" (unknown)\n");
+				}
+			}
 				
-			case 1:
-				// TODO
-				break;
+			if else(wordNum == 4){
+				int Rec_Raw = /*To be made later*/;
+				if(Rec_Raw == 0){
+					sb.append(" (Disable)\n");
+				}
+				if else(Rec_Raw == 1){
+					sb.append(" (Enable)\n");
+				}
+				else{
+					sb.append(" (unknown)\n");			
+				}
+			}
 				
-			case 3:
-				// TODO
-				break;
+			if else(wordNum == 5){
+				int Cmd_ID = /*To be made later*/;
+			}
 				
-			case 4:
-				// TODO
-				break;
+			if else(wordNum == 10){
+				int Num_Responses = /*To be made later*/;
+			}
+				
+			if else(wordNum == 15){
+				int Reset_Enable = /*To be made later*/;
+				if(Reset_Enable == 0){
+					sb.append(" (Disable)\n");
+				}
+				if else(Reset_Enable == 1){
+					sb.append(" (Enable)\n");
+				}
+				else{
+					sb.append(" (unknown)\n");			
+				}	
+			}
+				
+			if else(wordNum == 22){
+				int Direction = /*To be made later*/;
+				if(Direction == 0){
+					sb.append(" (Right)\n");
+				}
+				if else(Direction == 1){
+					sb.append(" (Left)\n");
+				}
+				else{
+					sb.append(" (unknown)\n");			
+				}	
+			}
+				
+			if else(wordNum == 32){
+				int Num_Samples = /*To be made later*/;
+			}
+
+			if else(wordNum == 37){
+				int Parity = /*To be made later*/;
+				if(Parity == 0){
+					sb.append(" (Even)\n");
+				}
+				if else(Parity == 1){
+					sb.append(" (Odd)\n");
+				}
+				else{
+					sb.append(" (unknown)\n");			
+				}	
+			}
+				
+			if else(wordNum == 38){
+				int Test = /*To be made later*/;
+				if(Test == 0){
+					sb.append(" (Disable)\n");
+				}
+				if else(Test == 1){
+					sb.append(" (Enable)\n");
+				}
+				else{
+					sb.append(" (unknown)\n");			
+				}	
+			}
+				
+			if eles(wordNum == 40){
+				int Ctrl_Enable = /*To be made later*/;
+				if(Ctrl_Enable == 0){
+					sb.append(" (Disable)\n");
+				}
+				if else(Ctrl_Enable == 1){
+					sb.append(" (Enable)\n");
+				}
+				else{
+					sb.append(" (unknown)\n");			
+				}
+				
+			if else(wordNum == 41){
+				int Code = /*To be made later*/;
+			}
+			else{
+				sb.append(" (unknown)\n");			
 			}
 		}
 		
