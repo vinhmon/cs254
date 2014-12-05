@@ -1,0 +1,87 @@
+/**
+ * Encapsulate logic for parsing command words and fields
+ */
+public class CommandFields {
+
+	/**
+	 * Parse fields in a single word.  Has to pass in word data and
+	 * which word number and which part number this word belongs to.
+	 */
+	public String parse(int partNum, int wordNum, short wordData) {
+		StringBuilder sb = new StringBuilder();
+		
+		if (partNum == 1) {
+			switch (wordNum) {
+			case 0:
+				int Rec_Ctrl = (wordData >> 13) & 0b11;
+				int Num_Part_I_Words = (wordData >> 4) & 0b111111;
+				int Num_Part_II_Words = wordData & 0b1111;
+				sb.append(String.format("Part I, Word 0: Rec_Ctrl = %d", Rec_Ctrl));
+				switch (Rec_Ctrl) {
+				case 0:
+					sb.append(" (no recording)\n");
+					break;
+				case 2:
+					sb.append(" (no processing)\n");
+					break;
+				case 3:
+					sb.append(" (processing & recording)\n");
+					break;
+				default:
+					sb.append(" (unknown)\n");
+				}
+				sb.append(String.format("Part I, Word 0: Num_Part_I_Words = %d\n", Num_Part_I_Words));
+				sb.append(String.format("Part I, Word 0: Num_Part_II_Words = %d\n", Num_Part_II_Words));
+				break;
+				
+			case 1:
+				// TODO
+				break;
+				
+			case 4:
+				// TODO
+				break;
+				
+			case 5:
+				// TODO
+				break;
+				
+			case 10:
+				// TODO
+				break;
+				
+			case 15:
+				// TODO
+				break;
+				
+			case 22:
+				// TODO
+				break;
+				
+			case 32:
+				// TODO
+				break;
+			}
+		} else if (partNum == 2) {
+			switch (wordNum) {
+			case 0:
+				// TODO
+				break;
+				
+			case 1:
+				// TODO
+				break;
+				
+			case 3:
+				// TODO
+				break;
+				
+			case 4:
+				// TODO
+				break;
+			}
+		}
+		
+		return sb.toString();
+	}
+}
