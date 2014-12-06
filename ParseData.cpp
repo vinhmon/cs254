@@ -5,6 +5,7 @@ ParseData::ParseData()
 	data = " ";
 	size = " ";
 	cycle = " ";
+	lineNum = 0;
 }
 
 
@@ -13,6 +14,7 @@ ParseData::ParseData(string line)
 	istringstream ss(line);
 	ss.ignore(82);
 	ss >> address >> data >> size >> cycle;
+	lineNum++;
 }
 
 ParseData::~ParseData()
@@ -44,6 +46,15 @@ ParseData & ParseData::setsize(string newSize)
 	return *this;
 }
 
+ParseData & ParseData::setAll(string line)
+{
+	istringstream ss(line);
+	ss.ignore(82);
+	ss >> address >> data >> size >> cycle;
+	return *this;
+
+}
+
 string ParseData::getAddress()
 {
 	return address;
@@ -62,6 +73,27 @@ string ParseData::getData()
 string ParseData::getSize()
 {
 	return size;
+}
+
+int ParseData::getDataInt()
+{
+	stringstream sstr;
+	sstr << data;
+	sstr << hex;
+
+	int intData;
+	sstr >> intData;
+	return intData;
+}
+
+int ParseData::getLineNum()
+{
+	return lineNum;
+}
+
+void ParseData::setLineNum(int newLineNum)
+{
+	lineNum = newLineNum;
 }
 
 

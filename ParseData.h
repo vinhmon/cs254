@@ -14,6 +14,7 @@ public:
 	ParseData();
 	ParseData(string line);
 
+	ParseData & setAll(string line);
 	ParseData & setAddress(string);
 	ParseData & setdata(string);
 	ParseData & setsize(string);
@@ -24,11 +25,17 @@ public:
 	string getSize();
 	string getCycle();
 
+	int getDataInt();
+	int getLineNum();
+
+	void setLineNum(int);
+
 	const void print();
 
 	~ParseData();
 
 private:
 	string address, data, size, cycle;
+	int lineNum;
 };
 #endif
