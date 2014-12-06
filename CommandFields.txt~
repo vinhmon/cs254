@@ -64,12 +64,10 @@ public class CommandFields {
 				
 			if else(wordNum == 5){
 				int Cmd_ID = /*To be made later*/;
-				sb.append(" (Command ID)\n");
 			}
 				
 			if else(wordNum == 10){
 				int Num_Responses = /*To be made later*/;
-				sb.append(" (Number of Responses)\n");
 			}
 				
 			if else(wordNum == 15){
@@ -100,7 +98,6 @@ public class CommandFields {
 				
 			if else(wordNum == 32){
 				int Num_Samples = /*To be made later*/;
-				sb.append(" (Number of Samples)\n");
 			}
 
 			if else(wordNum == 37){
@@ -143,7 +140,6 @@ public class CommandFields {
 				
 			if else(wordNum == 41){
 				int Code = /*To be made later*/;
-				sb.append(" (Code Value)\n");
 			}
 			else{
 				sb.append(" (unknown)\n");			
