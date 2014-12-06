@@ -107,13 +107,15 @@ const void ParseList::printParse()
 		int count = 0;
 		Node *current;
 		current = head;
+		int numofwords;
 		while (current != NULL)
 		{
 			if (current->data.getAddress() == "40000810")
 			{
 				if (current->data.getCycle() == "Wr")
 				{
-					cout << "Line " << current->data.getLineNum() << ":" << "Write S-to-D command: " << current->data.getDataInt() << endl;
+					cout << "Line " << current->data.getLineNum() << ":" << "Write S-to-D command: " << current->data.getDataInt() 
+						<< " commands, " << (current->data.getDataInt())/2 << " words" << endl;
 					if (current->data.getDataInt() > 0)
 					{
 						retrieveAddressFields(current);
@@ -121,11 +123,13 @@ const void ParseList::printParse()
 				}
 				else
 				{
-					cout << "Line " << current->data.getLineNum() << ":" << "Read S-to-D command: " << current->data.getDataInt() << endl;
+					cout << "Line " << current->data.getLineNum() << ":" << "Read S-to-D command: " << current->data.getDataInt() 
+						<< " commands, " << (current->data.getDataInt())/2 << " words" << endl;
 					if (current->data.getDataInt() > 0)
 					{
 						retrieveAddressFields(current);
 					}
+					cout << endl;
 				}
 				count++;
 			}
@@ -172,15 +176,88 @@ const void ParseList::retrieveAddressFields(Node *current)
 	word tempWord;
 	for (list<string>::iterator it = temp.begin(); it != temp.end(); it++)
 	{
-		
+		string word, word1;
 		//tempWord.setAll(*it.substr(0-6))
+		word =it->substr(0,4);
+		word1=it->substr(4,7);
+		string wordcommand;
 
-		cout << "word " << wordPos << " :" << it->substr(0,4) << endl;
+		findWordCommand(wordPos, wordcommand);
+		
+		if(wordcommand != "none")
+		{
+		cout << "Line " << current->data.getLineNum() << ": " << "word " << wordPos << ": " << wordcommand << " = " << word  << endl;
+		}
 		wordPos++;
-		cout << "word " << wordPos << " :" << it->substr(4, 7) << endl;
+		
+		
+		findWordCommand(wordPos, wordcommand);
+		
+		if(wordcommand != "none")
+		{
+		cout << "Line " << current->data.getLineNum() << ": " << "word " << wordPos << ": " << wordcommand << " = " << word1 << endl;
+		}
 		wordPos++;
-
+		current = current -> next;
 	}
+	cout << endl;
+
+}
+
+void ParseList::findWordCommand(int wordPos, string &wordcommand)
+{
+			if (wordPos == 0)
+		{
+			wordcommand = "Rec_Ctrl";
+		}
+		else if (wordPos == 1)
+		{
+			wordcommand = "Cmd_Type";
+		}
+		else if (wordPos == 4)
+		{
+			wordcommand = "Rec__Raw";
+		}
+		else if (wordPos == 5)
+		{
+			wordcommand = "Cmd_ID";
+		}
+		else if (wordPos == 10)
+		{
+			wordcommand = "Num_Responses";
+		}
+		else if (wordPos == 15)
+		{
+			wordcommand = "Reset_Enable";
+		}
+		else if (wordPos == 22)
+		{
+			wordcommand = "Direction";
+		}
+		else if (wordPos == 32)
+		{
+			wordcommand = "Num_Samples";
+		}
+		else if (wordPos == 37)
+		{
+			wordcommand = "Parity";
+		}
+		else if (wordPos == 38)
+		{
+			wordcommand = "Test";
+		}
+		else if (wordPos == 40)
+		{
+			wordcommand = "Ctrl_Enable";
+		}
+		else if (wordPos == 41)
+		{
+			wordcommand = "Code";
+		}
+		else
+		{
+			wordcommand = "none";
+		}
 
 }
 
