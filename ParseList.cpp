@@ -52,7 +52,7 @@ void ParseList::insertBack(ParseData data)
 	count++;
 }
 
-ParseData ParseList::getParseData()
+ParseData ParseList::getParseData()  // testing purposes
 {
 	return head->data;
 }
@@ -104,6 +104,7 @@ const void ParseList::printParse()
 	}
 	else
 	{
+		ofstream outFile("output.txt", ofstream::trunc);
 		int count = 0;
 		Node *current;
 		current = head;
@@ -113,75 +114,149 @@ const void ParseList::printParse()
 			{
 				if (current->data.getCycle() == "Wr")
 				{
-					cout << "Line " << current->data.getLineNum() << ":" << "Write S-to-D command: " << current->data.getDataInt() << endl;
+					outFile << "Line " << current->data.getLineNum() << ": " << "Write S-to-D command: " << current->data.getDataInt() / 2 << " words" << endl;
+
+					cout << "Line " << current->data.getLineNum() << ": " << "Write S-to-D command: " << current->data.getDataInt() / 2 << " words" << endl;
 					if (current->data.getDataInt() > 0)
 					{
-						retrieveAddressFields(current);
+						retrieveAddressFields(current, outFile);
+					}
+					else
+					{
+						outFile << endl;
+						cout << endl;
 					}
 				}
 				else
 				{
-					cout << "Line " << current->data.getLineNum() << ":" << "Read S-to-D command: " << current->data.getDataInt() << endl;
+					outFile << "Line " << current->data.getLineNum() << ": " << "Read S-to-D command: " << current->data.getDataInt() / 2 << " words" << endl;
+
+					cout << "Line " << current->data.getLineNum() << ": " << "Read S-to-D command: " << current->data.getDataInt() / 2 << " words" << endl;
 					if (current->data.getDataInt() > 0)
 					{
-						retrieveAddressFields(current);
+						retrieveAddressFields(current, outFile);
+					}
+					else
+					{
+						outFile << endl;
+						cout << endl;
+					}
+				}
+				count++;
+			}
+			else if (current->data.getAddress() == "40000C18")
+			{
+				if (current->data.getCycle() == "Wr")
+				{
+					outFile << "Line " << current->data.getLineNum() << ": " << "Write D-to-S command: " << current->data.getDataInt() / 2 << " words" << endl;
+
+					cout << "Line " << current->data.getLineNum() << ": " << "Write D-to-S command: " << current->data.getDataInt() / 2 << " words" << endl;
+					if (current->data.getDataInt() > 0)
+					{
+						retrieveAddressFields(current, outFile);
+					}
+					else
+					{
+						outFile << endl;
+						cout << endl;
+					}
+				}
+				else
+				{
+					outFile << "Line " << current->data.getLineNum() << ": " << "Read D-to-S command: " << current->data.getDataInt() / 2 << " words" << endl;
+
+					cout << "Line " << current->data.getLineNum() << ": " << "Read D-to-S command: " << current->data.getDataInt() / 2 << " words" << endl;
+					if (current->data.getDataInt() > 0)
+					{
+						retrieveAddressFields(current, outFile);
+					}
+					else
+					{
+						outFile << endl;
+						cout << endl;
 					}
 				}
 				count++;
 			}
 			current = current->next;
 		}
+		outFile.close();
 		cout << "Number of commands found: " << count;
 	}
 }
 
-const void ParseList::retrieveAddressFields(Node *current)
+const void ParseList::retrieveAddressFields(Node *current, ofstream & outFile)
 {
-	list<string> temp;
+	list<ParseData> temp;
+	bool forward = false;
+	
 	int numWords = current->data.getDataInt() / 2;
 	int numOfRows = current->data.getDataInt() / 4; //number of rows to parse data for fields
 	current = current->next; //increment to row below command to parse
 
 	if (current->data.getAddress() == "40000818")
 	{
-		for (int i = 0; i < numOfRows; i++)
-		{
-			temp.push_back(current->data.getData());
-			//parse data into field list, need to implement
-			//cout << current->data.getData() << endl;
-
-			current = current->next;
-			//increment below 
-		}
+		forward = true;
 	}
-	else
+
+	for (int i = 0; i < numOfRows; i++)
 	{
-		for (int i = 0; i < numOfRows; i++)
-		{
-			temp.push_front(current->data.getData());
-			//parse data into field list, need to implement
-			//cout << current->data.getData() << endl;
+		temp.push_back(current->data);
 
-			current = current->next;
-			//increment below 
-		}
+
+		current = current->next;
+
 	}
 
-	//testing purposes
+
 	int wordPos = 0;
 	word tempWord;
-	for (list<string>::iterator it = temp.begin(); it != temp.end(); it++)
+	ParseField  tempField;
+	if (!forward)// reverse 5-4-3-2-1
 	{
-		
-		//tempWord.setAll(*it.substr(0-6))
+		tempField.setForward(false);
+		wordPos = numWords - 1;
+		for (list<ParseData>::iterator it = temp.begin(); it != temp.end(); it++)
+		{
+			tempWord.setAll(it->getData().substr(4, 4), wordPos, it->getLineNum());
+			tempField.insert(tempWord);
+			//cout << "Line " << it->getLineNum() << ": Word " << wordPos << " :" << it->getData().substr(0, 4) << endl; //it->substr(0,4)
+			wordPos--;
 
-		cout << "word " << wordPos << " :" << it->substr(0,4) << endl;
-		wordPos++;
-		cout << "word " << wordPos << " :" << it->substr(4, 7) << endl;
-		wordPos++;
+			tempWord.setAll(it->getData().substr(0, 4), wordPos, it->getLineNum());
+			tempField.insert(tempWord);
+			//cout << "Line " << it->getLineNum() << ": Word " << wordPos << " :" << it->getData().substr(4, 7) << endl;
+			wordPos--;
 
+		}
+		//tempField.print();
+		tempField.printParse(outFile);
+		outFile << endl;
+		cout << endl;
 	}
+	else //forward 0-1-2-3-4-5 memory address
+	{
+		tempField.setForward(true); 
+		wordPos = 0;
+		for (list<ParseData>::iterator it = temp.begin(); it != temp.end(); it++)
+		{
 
+			tempWord.setAll(it->getData().substr(0, 4), wordPos, it->getLineNum());
+			tempField.insert(tempWord);
+			wordPos++;
+			
+			tempWord.setAll(it->getData().substr(4, 4), wordPos, it->getLineNum());
+			tempField.insert(tempWord);
+			wordPos++;
+
+		}
+		//tempField.print();
+		tempField.printParse(outFile);
+		outFile << endl;
+		cout << endl;
+	}
+	//testing purposes
+	
 }
 
 const int ParseList::getCount()

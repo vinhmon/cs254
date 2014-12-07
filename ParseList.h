@@ -5,6 +5,7 @@
 #include "ParseData.h"
 #include "word.h"
 #include <list>
+#include "ParseField.h"
 
 using namespace std;
 
@@ -32,7 +33,7 @@ public:
 	
 	const int getCount();
 
-	const void retrieveAddressFields(Node *current);
+	const void retrieveAddressFields(Node *current, ofstream &);
 
 	~ParseList();
 

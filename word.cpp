@@ -27,11 +27,13 @@ void word::setWordHex(string newWord)
 	wordHex = newWord;
 }
 
-void word::setAll(string newWord, int num)
+void word::setAll(string newWord, int num, int newLineNum)
 {
 	wordHex = newWord;
 	wordBinary = convertToBinary(newWord);
 	wordNum = num;
+	lineNum = newLineNum;
+
 }
 
 const string word::getWordBinary()
@@ -42,6 +44,16 @@ const string word::getWordBinary()
 const string word::getWordHex()
 {
 	return wordHex;
+}
+
+const int word::getLineNum()
+{
+	return lineNum;
+}
+
+const int word::getWordNum()
+{
+	return wordNum;
 }
 
 

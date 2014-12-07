@@ -7,31 +7,20 @@ using namespace std;
 #include "ParseData.h"
 #include "ParseList.h"
 
-struct Parse
-{
-	string address, data, size, cycle;
 
-};
 
 void inputData(ParseList & data);
-//ParseData inputDataParse();
 
 int main()
 {
 	ParseList list;
 	inputData(list);
 	list.printParse();
-	//list.getParseData().print();
 
-	string line = "-330002 3---        2.655us             -11.749s    Start       A32nMBLT         4062E690 FFFCFFF3FFF70007    D64    Wr       Data ----- ----   1111111";
-	ParseData dataTest;
-	
-	dataTest.setAll(line);
 
 
 
 	cout << endl;
-	system("Pause");
 }
 
 
