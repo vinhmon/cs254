@@ -1,5 +1,5 @@
 main: main.o ParseData.o ParseField.o ParseList.o word.o 
-	g++ -o main main.o ParseData.o ParseField.o ParseList.o word.o 
+	g++ -o project main.o ParseData.o ParseField.o ParseList.o word.o 
 
 main.o: main.cpp
 	g++ -c main.cpp
@@ -16,3 +16,5 @@ ParseList.o: ParseList.cpp
 word.o: word.cpp
 	g++ -c word.cpp
 
+clean:
+	rm -rf *o project output.txt
