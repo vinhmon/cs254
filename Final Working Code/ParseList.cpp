@@ -110,7 +110,7 @@ const void ParseList::printParse()
 		current = head;
 		while (current != NULL)
 		{
-			if (current->data.getAddress() == "40000810")
+			if (current->data.getAddress() == "40000818" || current->data.getAddress() == "40000C20")
 			{
 				if (current->data.getCycle() == "Wr")
 				{
