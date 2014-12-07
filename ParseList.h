@@ -33,8 +33,13 @@ public:
 	
 	const int getCount();
 
+<<<<<<< HEAD
 	const void retrieveAddressFields(Node *current, ofstream &);
 
+=======
+	const void retrieveAddressFields(Node *current);
+	void findWordCommand(int wordPos, string& wordcommand);
+>>>>>>> bbc6e24bf633f6aeffcea16eeee56106f7d09703
 	~ParseList();
 
 
