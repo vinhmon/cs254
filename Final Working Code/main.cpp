@@ -9,22 +9,34 @@ using namespace std;
 
 
 
-void inputData(ParseList & data);
+void inputData(ParseList & data, string);
 
-int main()
+int main(int argc, char *argv[])
 {
-	ParseList list;
-	inputData(list);
-	list.printParse();
+	if(argc==1)
+		cout << "Usage: ./program_name arg1" << endl;
+	else
+	{
+		string fileName; 
+		for (int i = 1; i < argc; i++)
+		{		
+			fileName += argv[i];
+		}
+
+		
+		
+		ParseList list;
+		inputData(list, fileName);
+		list.printParse();
+	}
 
 
 
-
-	cout << endl;
+	return 0;
 }
 
 
-void inputData(ParseList & data)
+void inputData(ParseList & data, string fileName)
 {
 	int currentLineNum = 2;
 	string line; //string where getline 
@@ -33,7 +45,7 @@ void inputData(ParseList & data)
 
 	string dummyline;
 		
-	ifstream readFile("test_data.log"); //read test file
+	ifstream readFile(fileName.c_str()); //read test file
 
 	getline(readFile, dummyline); //read the first line into dummyline to skip first line
 
@@ -53,7 +65,7 @@ void inputData(ParseList & data)
 	}
 	else
 	{
-		cerr << "No File Found!";
+		cerr << "File Unable to Open. Are you sure the filename is correct?" << endl;
 	}
 }
 

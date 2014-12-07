@@ -16,3 +16,7 @@ ParseList.o: ParseList.cpp
 word.o: word.cpp
 	g++ -c word.cpp
 
+clean:
+	rm -f *.o main output.txt
+
+
