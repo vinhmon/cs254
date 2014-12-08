@@ -110,7 +110,7 @@ const void ParseList::printParse()
 		current = head;
 		while (current != NULL)
 		{
-			if (current->data.getAddress() == "40000818" || current->data.getAddress() == "40000C20")
+			if (current->data.getAddress() == "40000810")
 			{
 				if (current->data.getCycle() == "Wr")
 				{
@@ -181,7 +181,7 @@ const void ParseList::printParse()
 			current = current->next;
 		}
 		outFile.close();
-		cout << "Number of commands found: " << count;
+		cout << "Number of commands found: " << count << endl;
 	}
 }
 
@@ -194,7 +194,7 @@ const void ParseList::retrieveAddressFields(Node *current, ofstream & outFile)
 	int numOfRows = current->data.getDataInt() / 4; //number of rows to parse data for fields
 	current = current->next; //increment to row below command to parse
 
-	if (current->data.getAddress() == "40000818")
+	if (current->data.getAddress() == "40000818" || current->data.getAddress() == "40000C20")
 	{
 		forward = true;
 	}

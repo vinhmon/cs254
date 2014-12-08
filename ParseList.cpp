@@ -181,7 +181,7 @@ const void ParseList::printParse()
 			current = current->next;
 		}
 		outFile.close();
-		cout << "Number of commands found: " << count;
+		cout << "Number of commands found: " << count << endl;
 	}
 }
 
