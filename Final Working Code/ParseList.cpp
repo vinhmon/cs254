@@ -100,7 +100,7 @@ const void ParseList::printParse()
 {
 	if (head == NULL)
 	{
-		cerr << "Cannot parse from any empty log!";
+		cerr << "Cannot parse from any empty log!" << endl;
 	}
 	else
 	{
@@ -181,7 +181,7 @@ const void ParseList::printParse()
 			current = current->next;
 		}
 		outFile.close();
-		cout << "Number of commands found: " << count << endl;
+		//cout << "Number of commands found: " << count << endl;
 	}
 }
 
