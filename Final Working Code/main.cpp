@@ -13,8 +13,8 @@ void inputData(ParseList & data, string);
 
 int main(int argc, char *argv[])
 {
-	if(argc==1)
-		cout << "Usage: ./program_name arg1" << endl;
+	if(argc!=1)
+		cout << "Usage: ./program_name <filename>" << endl;
 	else
 	{
 		string fileName; 

@@ -116,7 +116,7 @@ const void ParseList::printParse()
 				{
 					outFile << "Line " << current->data.getLineNum() << ": " << "Write S-to-D command: " << current->data.getDataInt() / 2 << " words" << endl;
 
-					cout << "Line " << current->data.getLineNum() << ": " << "Write S-to-D command: " << current->data.getDataInt() / 2 << " words" << endl;
+					//cout << "Line " << current->data.getLineNum() << ": " << "Write S-to-D command: " << current->data.getDataInt() / 2 << " words" << endl;
 					if (current->data.getDataInt() > 0)
 					{
 						retrieveAddressFields(current, outFile);
@@ -124,14 +124,14 @@ const void ParseList::printParse()
 					else
 					{
 						outFile << endl;
-						cout << endl;
+						//cout << endl;
 					}
 				}
 				else
 				{
 					outFile << "Line " << current->data.getLineNum() << ": " << "Read S-to-D command: " << current->data.getDataInt() / 2 << " words" << endl;
 
-					cout << "Line " << current->data.getLineNum() << ": " << "Read S-to-D command: " << current->data.getDataInt() / 2 << " words" << endl;
+					//cout << "Line " << current->data.getLineNum() << ": " << "Read S-to-D command: " << current->data.getDataInt() / 2 << " words" << endl;
 					if (current->data.getDataInt() > 0)
 					{
 						retrieveAddressFields(current, outFile);
@@ -139,7 +139,7 @@ const void ParseList::printParse()
 					else
 					{
 						outFile << endl;
-						cout << endl;
+						//cout << endl;
 					}
 				}
 				count++;
@@ -150,7 +150,7 @@ const void ParseList::printParse()
 				{
 					outFile << "Line " << current->data.getLineNum() << ": " << "Write D-to-S command: " << current->data.getDataInt() / 2 << " words" << endl;
 
-					cout << "Line " << current->data.getLineNum() << ": " << "Write D-to-S command: " << current->data.getDataInt() / 2 << " words" << endl;
+					//cout << "Line " << current->data.getLineNum() << ": " << "Write D-to-S command: " << current->data.getDataInt() / 2 << " words" << endl;
 					if (current->data.getDataInt() > 0)
 					{
 						retrieveAddressFields(current, outFile);
@@ -158,14 +158,14 @@ const void ParseList::printParse()
 					else
 					{
 						outFile << endl;
-						cout << endl;
+						//cout << endl;
 					}
 				}
 				else
 				{
 					outFile << "Line " << current->data.getLineNum() << ": " << "Read D-to-S command: " << current->data.getDataInt() / 2 << " words" << endl;
 
-					cout << "Line " << current->data.getLineNum() << ": " << "Read D-to-S command: " << current->data.getDataInt() / 2 << " words" << endl;
+					//cout << "Line " << current->data.getLineNum() << ": " << "Read D-to-S command: " << current->data.getDataInt() / 2 << " words" << endl;
 					if (current->data.getDataInt() > 0)
 					{
 						retrieveAddressFields(current, outFile);
@@ -173,7 +173,7 @@ const void ParseList::printParse()
 					else
 					{
 						outFile << endl;
-						cout << endl;
+						//cout << endl;
 					}
 				}
 				count++;
@@ -232,7 +232,7 @@ const void ParseList::retrieveAddressFields(Node *current, ofstream & outFile)
 		//tempField.print();
 		tempField.printParse(outFile);
 		outFile << endl;
-		cout << endl;
+		//cout << endl;
 	}
 	else //forward 0-1-2-3-4-5 memory address
 	{
@@ -253,7 +253,7 @@ const void ParseList::retrieveAddressFields(Node *current, ofstream & outFile)
 		//tempField.print();
 		tempField.printParse(outFile);
 		outFile << endl;
-		cout << endl;
+		//cout << endl;
 	}
 	//testing purposes
 	
